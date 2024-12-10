@@ -25,5 +25,6 @@ Code implementation of eight gene pair methods and performance comparison using 
 [^2]: LTBI: Latent Tuberculosis Infection.
 [^3]: HC: Healthy Control.
 ### 2.2 Performance comparison result
+The discovery data was divided into train and test data by 7:3
 ![Performance comparison result](https://github.com/wucc009/Implementation-and-comparison-of-gene-pair-methods/blob/main/image/Performance_comparison_result.jpg)
 
