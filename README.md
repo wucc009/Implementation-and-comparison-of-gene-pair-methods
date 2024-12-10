@@ -1,5 +1,5 @@
 # Implementation and comparison of gene pair methods
-==Code implementation of eight gene pair methods and performance comparison using the Pulmonary tuberculosis benchmark dataset==
+Code implementation of eight gene pair methods and performance comparison using the Pulmonary tuberculosis benchmark dataset
 
 ## 1、Code implementation of eight gene pair methods
 ### 1.1 Gene pair methods based on gene expression values
@@ -13,7 +13,7 @@
 - [REOs+ML](https://pubmed.ncbi.nlm.nih.gov/32292778) (Python 3.10.13)
 - TSP+ML (Python 3.10.13)
   
-## 2、Performance comparison of eight gene pair methods using the Pulmonary tuberculosis benchmark dataset
+## 2、Performance comparison of eight gene pair methods
 ### 2.1 Pulmonary tuberculosis benchmark dataset
 || GEO accession | Country | PTB[^1] | LTBI[^2] | HC[^3] |
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
