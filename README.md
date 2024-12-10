@@ -3,46 +3,27 @@ Code implementation of eight gene pair methods and performance comparison using 
 
 ## 1、Code implementation of eight gene pair methods
 ### 1.1 Gene pair methods based on gene expression values
-- [GERs]() (R)
+- [GERs](https://pubmed.ncbi.nlm.nih.gov/12208747) (R 4.2.3)
 ### 1.2 Gene pair methods based on gene ranking relationships
-- [TSP](https://pubmed.ncbi.nlm.nih.gov/12208747) (Python)
-- [k-TSP]() (R)
-- [TSPG]() (R)
-- [k-TSP+SVM]() (Python)
-- [REOs]() (Python)
-- [REOs+ML]() (Python)
-- [TSP+ML]() (Python)
+- [TSP](https://pubmed.ncbi.nlm.nih.gov/16646797) (Python 3.10.13)
+- [k-TSP](https://pubmed.ncbi.nlm.nih.gov/16105897) (R 4.2.3)
+- [TSPG](https://pubmed.ncbi.nlm.nih.gov/17663766) (R 4.2.3)
+- [k-TSP+SVM](https://pubmed.ncbi.nlm.nih.gov/21939564) (Python 3.10.13)
+- [REOs](https://pubmed.ncbi.nlm.nih.gov/25165092) (Python 3.10.13)
+- [REOs+ML](https://pubmed.ncbi.nlm.nih.gov/32292778) (Python 3.10.13)
+- TSP+ML (Python 3.10.13)
   
-## 使用指南
-1. 事前准备：
-- 创建一个虚拟环境，安装所需软件及包（此处不一一列举，可在代码中获取）
-- 从ensemble数据库下载所需.fa和.gtf文件
-- 从circbank下载所需文件
-2. 先从GEO、SRA数据库收集数据，最后从ENA获得.txt文件，包含三列：run_accession、fastq_md5、fastq_ftp：
-  - [GEO](https://www.ncbi.nlm.nih.gov/geo/?tdsourcetag=s_pcqq_aiomsg)
-  - [SRA](https://www.ncbi.nlm.nih.gov/sra)
-  - [ENA](https://www.ebi.ac.uk/ena/browser/home)
----
-3. 通过调用Aria2c_fastq.sh脚本进行下载：
+## 2、Performance comparison of eight gene pair methods using the Pulmonary tuberculosis benchmark dataset
+### 2.1 Pulmonary tuberculosis benchmark dataset
+|| GEO accession | Country | PTB[^1] | LTBI[^2] | HC[^3] |
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+| Discovery data | [GSE19439](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE19439) | England | 13 | 17 | 12 |
+|| [GSE19442](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE19442) | South Africa | 20 | 31 ||
+|| [GSE19444](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE19444) | England |  21 | 21 | 12 |
+| Validation data | [GSE83456](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE83456) | England | 45 || 61 |
+[^1]: PTB: Pulmonary Tuberculosis.
+[^2]: LTBI: Latent Tuberculosis Infection.
+[^3]: HC: Healthy Control.
+### 2.2 Performance comparison result
+![Performance comparison result](https://github.com/wucc009/Implementation-and-comparison-of-gene-pair-methods/blob/main/result/09_plot/01_train_ACC.pdf)
 
-> `nohup bash Aria2c_fastq.sh 1 01-PRJNA722042-3-single.txt temp_file1 >Aria2c_log1 2>&1 &`
-- 1：单端（2即双端）
-- 01-PRJNA722042-3-single.txt：第一步下载的文件
-- temp_file1：程序运行中的临时文件夹
----
-4. 使用fastq、fastqc和fastp进行质控：
-- fastq代码不小心删了（自己写一个很简单）
-- 之后调用fastQC.sh
-
-> `nohup bash fastQC.sh 01-PRJNA722042-3-single.txt log1 2>&1 &`
-- 根据fastQC结果最后使用Transcriptome_upstream_analysis.sh中的fastp进行质控
----
-5. 调用Transcriptome_upstream_analysis.sh脚本：
-- 进行STAR比对，获得rawdata
-- 对rawdata合并，并进行TPM标化，然后输出mRNA、lncRNA表达数据
-- 进行BWA比对
-- 进行CIRI2获取circRNA表达数据
-
-> `nohup bash Transcriptome_upstream_analysis.sh 1 01-PRJNA722042-3-single 3 47 >log1 2>&1 &`
-- 3:fastp对f端修剪长度
-- 47:star中参数--sjdbOverhang的值，默认值是100，理想值为read长度减1，这边采用read长度减1
