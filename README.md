@@ -1,5 +1,5 @@
 # Implementation and comparison of gene pair methods
-Code implementation of eight gene pair methods and performance comparison using the Pulmonary tuberculosis benchmark dataset
+==Code implementation of eight gene pair methods and performance comparison using the Pulmonary tuberculosis benchmark dataset==
 
 ## 1、Code implementation of eight gene pair methods
 ### 1.1 Gene pair methods based on gene expression values
