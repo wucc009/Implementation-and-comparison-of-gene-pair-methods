@@ -1,9 +1,18 @@
-# Platelet_transcriptome_fastq_data_processing
-这是一个用于转录组fastq数据的处理管道
-## 特点
-- 可进行单双端fastq数据的从头分析
-- 最终获得mRNA、lncRNA、circRNA表达数据
-- 只需少量操作即可完成
+# Implementation and comparison of gene pair methods
+Code implementation of eight gene pair methods and performance comparison using the Pulmonary tuberculosis benchmark dataset
+
+## 1、Code implementation of eight gene pair methods
+### 1.1 Gene pair methods based on gene expression values
+- [GERs]() (R)
+### 1.2 Gene pair methods based on gene ranking relationships
+- [TSP](https://pubmed.ncbi.nlm.nih.gov/12208747) (Python)
+- [k-TSP]() (R)
+- [TSPG]() (R)
+- [k-TSP+SVM]() (Python)
+- [REOs]() (Python)
+- [REOs+ML]() (Python)
+- [TSP+ML]() (Python)
+  
 ## 使用指南
 1. 事前准备：
 - 创建一个虚拟环境，安装所需软件及包（此处不一一列举，可在代码中获取）
